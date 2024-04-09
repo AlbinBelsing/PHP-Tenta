@@ -47,31 +47,31 @@
 
     function myInc(){
         if(isset($_POST["btnAdd"])){
-           if(!isset($_SESSION["totalamount"]) ){
-            $_SESSION["totalamount"] = 0;
-           }
+           if(isset($_SESSION["totalamount"]) && isset($_SESSION["nbrofinteractions"])){
 
-           if(!isset($_SESSION["nbrofinteractions"])) {
-            $_SESSION["nbrofinteractions"] = 0;
-           }
+            $totalamount = ++$_SESSION["totalamount"];
+            $nbrofinteractions = ++$_SESSION["nbrofinteractions"];
 
-           $_SESSION["totalamount"] ++;
-            $_SESSION["nbrofinteractions"] ++;
+            return infoToUser($totalamount, $nbrofinteractions);
+
+           } else {
+            return "Börja med att klicka på Begin!";
+           }
         }
     }
     
     function myDec() {
         if(isset($_POST["btnSub"])) {
-            if(!isset($_SESSION["totalamount"])){
-                $_SESSION["totalamount"] = 0;
-            }
+            if(isset($_SESSION["totalamount"]) && isset($_SESSION["nbrofinteractions"])){
+               
+                $totalamount = --$_SESSION["totalamount"];
+                $nbrofinteractions = ++$_SESSION["nbrofinteractions"];
 
-            if(!isset($_SESSION["nbrofinteractions"])) {
-                $_SESSION["nbrofinteractions"] = 0;
-            }
+                return infoToUser($totalamount, $nbrofinteractions);
 
-            $_SESSION["totalamount"] --;
-            $_SESSION["nbrofinteractions"] ++;
+            } else {
+                return "Börja med att klicka Begin";
+            }
         }
     }
     
@@ -94,6 +94,7 @@
             </form>
         </body>
     </html>
+
 
     
 
