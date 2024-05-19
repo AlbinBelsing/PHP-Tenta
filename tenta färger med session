@@ -1,0 +1,87 @@
+<?php
+session_start();
+
+if( !isset( $_SESSION["red"] ) &&
+    !isset( $_SESSION["green"] ) &&
+    !isset( $_SESSION["blue"] ) &&
+    !isset( $_GET["subCre"] ) &&
+    !isset( $_GET["subDec"] )) {
+    
+    $red = "5";
+    $green = "10";
+    $blue = "15";
+    
+}
+
+if( isset( $_GET["subCre"]) &&
+    !isset( $_GET["subDec"])) {
+
+        $red = "125";
+        $green = "150";
+        $blue = "175";
+
+    if( isset( $_SESSION["red"]) &&
+        isset($_SESSION["green"]) &&
+        isset($_SESSION["blue"] ) ) {
+
+        $red = $_GET["rangeRed"];
+        $green = $_GET["rangeGreen"];
+        $blue = $_GET["rangeBlue"];
+
+    } 
+        
+    $_SESSION["red"] = $red;
+    $_SESSION["green"] = $green;
+    $_SESSION["blue"] = $blue;
+}
+
+if( isset( $_SESSION["red"] ) &&
+    isset( $_SESSION["green"] ) &&
+    isset( $_SESSION["blue"] ) &&
+    !isset($_GET["subCre"] ) &&
+    !isset( $_GET["subDec"])) {
+
+    $red = $_SESSION["red"] + 5;
+    $green = $_SESSION["green"] + 10;
+    $blue = $_SESSION["blue"] + 15;
+
+    $_SESSION["red"] = $red;
+    $_SESSION["green"] = $green;
+    $_SESSION["blue"] = $blue;
+}
+
+if( isset( $_SESSION["red"] ) &&
+    isset( $_SESSION["green"] ) &&
+    isset( $_SESSION["blue"] ) &&
+    !isset( $_GET["subCre"] ) &&
+    isset($_GET["subDec"])) {
+
+    unset($_SESSION["red"]);
+    unset($_SESSION["green"]);
+    unset($_SESSION["blue"]);
+    
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Uppgift 1.1</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body style="background-color: rgb(<?php echo ("$red, $green, $blue"); ?>)">
+    <form action="tenta.php" method="get">
+        <div class="form-group">
+            <input type="range" min="0" max="255" value="<?php echo($red); ?>" name="rangeRed" />
+            <input type="range" min="0" max="255" value="<?php echo($green); ?>" name="rangeGreen" />
+            <input type="range" min="0" max="255" value="<?php echo($blue); ?>" name="rangeBlue" />
+        </div>
+        <div class="form-group">
+            <input type="submit" name="subCre" class="btn btn-primary" value="Create" />
+            <input type="submit" name="subDec" class="btn btn-primary" value="Destroy" />
+        </div>
+    </form>
+</body>
+</html>
