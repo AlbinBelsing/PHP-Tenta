@@ -48,36 +48,16 @@
 
     function myInc(){
         if(isset($_POST["btnAdd"])){
-          if(isset($_SESSION["totalamount"]) && isset($_SESSION["nbrofinteractions"])){
+         
             
-            $_SESSION["totalamount"]++;
-            $_SESSION["nbrofinteractions"]++;
-
-           $totalamount = $_SESSION["totalamount"];
-           $nbrofinteractions = $_SESSION["nbrofinteractions"];
-
-            return infoToUser($totalamount, $nbrofinteractions);
-
-          } else {
-            return "<p>Börja med att klicka på Begin!</p>";
-          }
+           
         }
     }
     
     function myDec() {
         if(isset($_POST["btnSub"])) {
-            if(isset($_SESSION["totalamount"]) && isset($_SESSION["nbrofinteractions"])){
-                $_SESSION["totalamount"]--;
-                $_SESSION["nbrofinteractions"]++;
-
-                $totalamount = $_SESSION["totalamount"];
-                $nbrofinteractions = $_SESSION["nbrofinteractions"];
-
-                return infoToUser($totalamount, $nbrofinteractions);
-
-            } else {
-                return "<p>Börja med att klicka på Begin</p>";
-            }
+            
+              
         }
     }
     
