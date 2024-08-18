@@ -1,0 +1,40 @@
+<?php
+if(isset( $_GET["choice"])) {
+    switch( $_GET["choice"]) {
+        case "first":
+            setcookie("namn", "Drömmar", time() + 3600);
+            setcookie("url", "https://www.ica.se/recept/drommar-715488/", time() + 3600);
+            break;
+
+        case "second":
+            setcookie("namn", "", time() - 3600);
+            setcookie("url", "", time() - 3600);
+            break;
+
+        case "third":
+            setcookie("namn", "Salta småkakor", time() + 3600);
+            setcookie("url", "https://www.ica.se/recept/salta-smakakor-721987/", time() + 3600);
+            break;
+    }
+} else {
+    setcookie("namn", "kolakakor", time() + 3600);
+    setcookie("url", "https://www.ica.se/recept/kolakakor-599834/", time() + 3600);
+}
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Uppgift 2.</title>
+</head>
+<body>
+<a href="<?php echo( $_COOKIE["url"]);?>"><?php echo( $_COOKIE["namn"]); ?></a>
+
+<ul>
+<li><a href="<?php echo( $_SERVER["PHP_SELF"] ); ?>?choice=first">En länk...</a></li>
+<li><a href="<?php echo( $_SERVER["PHP_SELF"] ); ?>?choice=second">En länk till...</a></li>
+<li><a href="<?php echo( $_SERVER["PHP_SELF"] ); ?>?choice=third">Och ännu en länk...</a></li>
+</ul>
+</body>
+</html>
