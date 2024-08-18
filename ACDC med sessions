@@ -1,0 +1,82 @@
+<?php 
+    //https://www3.kau.se/sips/tentor/ISGB11/ISGB11-1110-2024-05-20-1717069931.pdf
+
+    session_start();
+    
+
+    if( isset( $_POST["btnOne"]) && !isset( $_POST["btnTwo"])) {
+
+        $cOne = "AC";
+        $c = "/";
+        $cTwo = "DC";
+    
+        if( !isset( $_SESSION["cOne"] ) && !isset( $_SESSION["c"]) && !isset( $_SESSION["cTwo"]) ) {
+            $cOne = $_POST["txtCOne"];
+            $c = $_POST["txtC"];
+            $cTwo = $_POST["txtCTwo"];
+        }
+
+        $_SESSION["cOne"] = $cOne;
+        $_SESSION["c"] = $c;
+        $_SESSION["cTwo"] = $cTwo;
+    
+        
+    }
+    
+    if( !isset( $_SESSION["cOne"] ) && !isset( $_SESSION["c"]) && !isset( $_SESSION["cTwo"]) && !isset( $_POST["btnOne"]) && !isset( $_POST["btnTwo"])) {
+
+
+        $cOne = "CA";
+        $c = "\\";
+        $cTwo = "CD";
+        
+    }
+    
+    if( isset( $_SESSION["cOne"]) && isset( $_SESSION["c"]) && isset( $_SESSION["cTwo"]) && !isset( $_POST["btnOne"]) && isset( $_POST["btnTwo"])) {
+
+        //Klickar på End och tar bort kakorna
+
+        session_destroy();
+
+    }
+    
+    if( isset( $_SESSION["cOne"]) && isset( $_SESSION["c"]) && isset( $_SESSION["cTwo"]) && !isset( $_POST["btnOne"]) && !isset( $_POST["btnTwo"])) {
+
+        $cOne = "CD";
+        $c = "?";
+        $cTwo = "AC";
+
+        $_SESSION["cOne"] = $cOne;
+        $_SESSION["c"] = $c;
+        $_SESSION["cTwo"] = $cTwo; 
+    
+        
+    }
+    
+    ?>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta cet="utf-8" />
+        <title>Uppgift 1.</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              rel="stylesheet" />
+    </head>
+    <body>
+        <div>
+            <?php echo($cOne . $c . $cTwo); ?>
+        </div>
+        <form action="tentamen.php" method="post">
+            <div class="form-group">
+                <input type="submit" name="btnOne" class="btn btn-primary" value="Begin" />
+                <input type="submit" name="btnTwo" class="btn btn-primary" value="End" />
+            </div>
+            <div class="form-group">
+                <input type="text" value="<?php echo($cOne); ?>" name="txtCOne" />
+                <input type="text" value="<?php echo($c); ?>" name="txtC" />
+                <input type="text" value="<?php echo($cTwo); ?>" name="txtCTwo" />
+            </div>
+        </form>
+    </body>
+</html>
