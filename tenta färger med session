@@ -72,7 +72,7 @@ if( isset( $_SESSION["red"] ) &&
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body style="background-color: rgb(<?php echo ("$red, $green, $blue"); ?>)">
-    <form action="tenta.php" method="get">
+    <form action="tentamen.php" method="get">
         <div class="form-group">
             <input type="range" min="0" max="255" value="<?php echo($red); ?>" name="rangeRed" />
             <input type="range" min="0" max="255" value="<?php echo($green); ?>" name="rangeGreen" />
